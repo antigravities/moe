@@ -1,0 +1,64 @@
+<html>
+	<head>
+		<script type="text/javascript">
+			window.addEventListener("load", function(){
+				var xhr = new XMLHttpRequest();
+				xhr.onreadystatechange = function(){
+					if( xhr.readyState === XMLHttpRequest.DONE ){
+						var commands = JSON.parse(xhr.responseText);
+						document.getElementById("help-i").innerHTML = "All commands are prefixed with moe's callsign, %.";
+						commands.forEach(function(v,k){
+							document.getElementById("help-i").innerHTML+="<h1 id=\"%" + v.name + "\"><code>" + v.name + "</code></h1><h2><code>%" + v.synopsis + "</code></h2>" + v.man + "<br>";
+						});
+					}
+				}
+				xhr.open("GET", "./commands.json");
+				xhr.send();
+			});
+			setInterval(function(){
+				Array.prototype.slice.call(document.getElementsByTagName("blink")).forEach(function(v,k){
+					v.setAttribute("style", "color: white");
+					setTimeout(function(){
+						v.setAttribute("style", "color: black;");
+					}, 500);
+				});
+			}, 1000);
+		</script>
+		<link href='https://fonts.googleapis.com/css?family=Chewy' rel='stylesheet' type='text/css'>
+		<title>
+			moe - your favorite cute chatbot
+		</title>
+	</head>
+	<body style="font-family: 'Helvetica';">
+		<img src="/favicon.ico" style="right: 0; position: fixed;"></img>
+		<h1 style="font-family: 'Chewy';">moe is your favorite cute chatbot.</h1>
+		<h3>She works at <a href="https://groupees.com/">Groupees</a> sometimes.</h3>
+		<h1><b><blink>NOW WITH MORE &lt;blink&gt;!</blink></b></h1>
+
+		<h2 id="help">Commands</h2>
+		<div id="help-i">(loading...)</div>
+
+		<h2 id="abuse">Abuse policy (because people can't just be normal and rule-abiding)</h2>
+		To prevent the classic "you didn't warn me" meme, here is the policy regarding abuse: <b>don't</b><br><br>
+		This includes, but is in no way limited to:<br>
+		<ol>
+			<li>Excessive or unwanted spam</li>
+			<li>Attempting to evade bans or blocks towards a certain user</li>
+			<li>Violating any written and/or confirmed rule(s) set by Groupees staff or myself</li>
+			<li>Violating the law.</li>
+		</ol>
+		If you think what you're doing could possibly get you banned, <b>don't</b>.<br><br>
+		Depending on the severity, actions deemed abusive may result in a permanent or temporary ban from moe or Groupees. We reserve the right to amend these rules and/or ban any user, at any time, for any reason.
+		<h2 id="todo">To-do</h2>
+		Nothing (at the moment). Suggest things using %suggest.
+		<h2 id="donators">Donators (thanks so much!!)</h2>
+		<ul>
+			<li><a href="https://groupees.com/user_walls/148851">Phaerless</a></li>
+			<li><a href="https://groupees.com/user_walls/505108">EsKa</a></li>
+			<li><a href="https://groupees.com/user_walls/108086">Kraligor</a></li>
+			<li><a href="https://groupees.com/user_walls/101464">sloth speedskater</a></li>
+		</ul>
+		moe is &copy; 2016 antigravities/Alexandra F. All rights reserved.<br>
+		moe's picture comes from <a href="https://www.youtube.com/watch?v=_-fgbICIu7w">Puppet Theater of Twee-Box</a> by sasakure.UK. &#8471; 2013 U/M/A/A Japan, &copy; 2013 sasakure.UK.
+	</body>
+</html>
